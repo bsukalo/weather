@@ -1,5 +1,5 @@
 import "./App.css";
-import Background from "./components/backgrouind/Background.tsx";
+import Background from "./components/background/Background.tsx";
 import MainWindow from "./components/mainWindow/MainWindow.tsx";
 
 function App() {
