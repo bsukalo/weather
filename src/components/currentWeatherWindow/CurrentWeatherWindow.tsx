@@ -1,12 +1,50 @@
+import axios from "axios";
 import "./CurrentWeatherWindow.css";
+import { useEffect, useState } from "react";
+
+interface Time {
+	hour: number;
+	minute: number;
+}
 
 const CurrentWeatherWindow = () => {
+	const [time, setTime] = useState<Time | null>();
+
+	const fetchTime = () => {
+		axios
+			.get<Time>(
+				"https://timeapi.io/api/time/current/zone?timeZone=America/New_York"
+			)
+			.then((res) => setTime(res.data))
+			.catch((err) => console.error(err));
+	};
+
+	useEffect(() => {
+		fetchTime();
+
+		const interval = setInterval(() => {
+			fetchTime();
+		}, 10000);
+
+		return () => clearInterval(interval);
+	}, []);
+
 	return (
 		<div className="weather-window">
 			<div className="weather-data-container">
-        <div className="location-name">New York</div>
-        <div className="location-weather-data"></div>
-      </div>
+				<div className="location-data">
+					<div className="location-name">New York</div>
+					{time ? (
+						<div className="location-time">
+							{time.hour.toString().padStart(2, "0")}:
+							{time.minute.toString().padStart(2, "0")}
+						</div>
+					) : (
+						<div>XX:XX</div>
+					)}
+				</div>
+				<div className="location-weather-data"></div>
+			</div>
 		</div>
 	);
 };
