@@ -1,20 +1,18 @@
 import "./CurrentWeatherWindow.css";
 import { useEffect, useState } from "react";
-import timeApiClient from '../../services/time-api-client.ts';
+import timeApiClient from "../../services/time-api-client.ts";
 
 interface Time {
 	hour: number;
-	minute: number; 
+	minute: number;
 }
 
 const CurrentWeatherWindow = () => {
 	const [time, setTime] = useState<Time | null>();
 
 	const fetchTime = () => {
-	  timeApiClient
-			.get<Time>(
-				"zone?timeZone=America/New_York"
-			)
+		timeApiClient
+			.get<Time>("zone?timeZone=America/New_York")
 			.then((res) => setTime(res.data))
 			.catch((err) => console.error(err));
 	};
@@ -40,7 +38,9 @@ const CurrentWeatherWindow = () => {
 							{time.minute.toString().padStart(2, "0")}
 						</div>
 					) : (
-						<div>XX:XX</div>
+						<div className="location-time">
+							<div className="skeleton"></div>
+						</div>
 					)}
 				</div>
 				<div className="location-weather-data"></div>
