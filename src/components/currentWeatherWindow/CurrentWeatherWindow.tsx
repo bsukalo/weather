@@ -1,19 +1,19 @@
-import axios from "axios";
 import "./CurrentWeatherWindow.css";
 import { useEffect, useState } from "react";
+import timeApiClient from '../../services/time-api-client.ts';
 
 interface Time {
 	hour: number;
-	minute: number;
+	minute: number; 
 }
 
 const CurrentWeatherWindow = () => {
 	const [time, setTime] = useState<Time | null>();
 
 	const fetchTime = () => {
-		axios
+	  timeApiClient
 			.get<Time>(
-				"https://timeapi.io/api/time/current/zone?timeZone=America/New_York"
+				"zone?timeZone=America/New_York"
 			)
 			.then((res) => setTime(res.data))
 			.catch((err) => console.error(err));
