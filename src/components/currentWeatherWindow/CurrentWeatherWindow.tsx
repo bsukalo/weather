@@ -1,6 +1,7 @@
 import "./CurrentWeatherWindow.css";
 import { useEffect, useState } from "react";
 import timeApiClient from "../../services/time-api-client.ts";
+import LocationWeatherData from "../LocationWeatherData/LocationWeatherData.tsx";
 
 interface Time {
 	hour: number;
@@ -43,7 +44,7 @@ const CurrentWeatherWindow = () => {
 						</div>
 					)}
 				</div>
-				<div className="location-weather-data"></div>
+				<LocationWeatherData />
 			</div>
 		</div>
 	);
