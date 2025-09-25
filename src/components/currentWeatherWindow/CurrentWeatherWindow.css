@@ -15,7 +15,7 @@
 	z-index: 4;
 }
 
-.weather-data-container {
+.location-info-container {
 	display: flex;
 	flex-direction: row;
 	height: 100%;
@@ -23,7 +23,7 @@
 	justify-content: space-between;
 }
 
-.location-data {
+.location-info {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

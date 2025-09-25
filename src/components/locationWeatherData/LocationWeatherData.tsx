@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import weatherApiClient from "../../services/weather-api-client";
+import './LocationWeatherData.css';
 
 interface Weather {
 	current: {
@@ -31,16 +32,16 @@ const LocationWeatherData = () => {
 	}, []);
 
 	return (
-		<>
+		<div className="weather-data-container">
 			{weather ? (
-				<div>
-					<p>{weather.current.temp_c.toString()}</p>
-					<p>{weather.current.condition.text.toString()}</p>
+				<div className="weather-data">
+					<p className="temperature">{weather.current.temp_c.toString()}°</p>
+					<p className="weather-description">{weather.current.condition.text.toString()}</p>
 				</div>
 			) : (
 				<div>Loading...</div>
 			)}
-		</>
+		</div>
 	);
 };
 
