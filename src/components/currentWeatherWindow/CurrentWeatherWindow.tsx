@@ -1,22 +1,29 @@
 import "./CurrentWeatherWindow.css";
 import { useEffect, useState } from "react";
-import timeApiClient from "../../services/time-api-client.ts";
+import apiClient from "../../services/api-client.ts";
 import LocationWeatherData from "../locationWeatherData/LocationWeatherData.tsx";
 
 interface Time {
-	hour: number;
-	minute: number;
+	location: {
+		localtime: string;
+	}
 }
 
 const CurrentWeatherWindow = () => {
 	const [time, setTime] = useState<Time | null>();
 
 	const fetchTime = () => {
-		timeApiClient
-			.get<Time>("zone?timeZone=America/New_York")
-			.then((res) => setTime(res.data))
+		apiClient
+			.get<Weather>("current.json", {
+				params: {
+					q: "New_York",
+				},
+			})
+			.then((res) => {
+				setTime(res.data);
+			})
 			.catch((err) => console.error(err));
-	};
+		};
 
 	useEffect(() => {
 		fetchTime();
@@ -35,8 +42,7 @@ const CurrentWeatherWindow = () => {
 					<div className="location-name">New York</div>
 					{time ? (
 						<div className="location-time">
-							{time.hour.toString().padStart(2, "0")}:
-							{time.minute.toString().padStart(2, "0")}
+							{time.location.localtime.slice(11,16)}
 						</div>
 					) : (
 						<div className="location-time">

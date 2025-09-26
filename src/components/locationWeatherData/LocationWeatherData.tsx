@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import weatherApiClient from "../../services/weather-api-client";
+import apiClient from "../../services/api-client";
 import './LocationWeatherData.css';
 
 interface Weather {
@@ -15,7 +15,7 @@ const LocationWeatherData = () => {
 	const [weather, setWeather] = useState<Weather | null>(null);
 
 	const fetchWeather = () => {
-		weatherApiClient
+		apiClient
 			.get<Weather>("current.json", {
 				params: {
 					q: "New_York",
