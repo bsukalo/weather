@@ -1,13 +1,13 @@
 * {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .dynamic-background {
-	background-color: darkslategray;
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100vh;
+  background-color: darkslategray;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
 }
