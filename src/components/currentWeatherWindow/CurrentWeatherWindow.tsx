@@ -2,6 +2,7 @@ import "./CurrentWeatherWindow.css";
 import { useEffect, useState } from "react";
 import apiClient from "../../services/api-client.ts";
 import LocationWeatherData from "../locationWeatherData/LocationWeatherData.tsx";
+import Skeleton from "../skeleton/Skeleton.tsx";
 
 interface Time {
   location: {
@@ -46,7 +47,7 @@ const CurrentWeatherWindow = () => {
             </div>
           ) : (
             <div className="location-time">
-              <div className="skeleton"></div>
+              <Skeleton skeletonWidth="100px" skeletonHeight="1em" />
             </div>
           )}
         </div>

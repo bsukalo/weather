@@ -1,0 +1,6 @@
+.skeleton {
+  display: inline-block;
+  position: relative;
+  animation: skeleton-loading 1s linear infinite alternate;
+  top: 5px;
+}

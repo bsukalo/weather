@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import apiClient from "../../services/api-client";
 import "./LocationWeatherData.css";
+import Skeleton from "../skeleton/Skeleton.tsx";
 
 interface Weather {
   current: {
@@ -35,13 +36,24 @@ const LocationWeatherData = () => {
     <div className="weather-data-container">
       {weather ? (
         <div className="weather-data">
-          <p className="temperature">{weather.current.temp_c.toString()}°</p>
+          <p className="temperature"> {weather.current.temp_c.toString()}°</p>
           <p className="weather-description">
             {weather.current.condition.text.toString()}
           </p>
         </div>
       ) : (
-        <div>Loading...</div>
+        <div className="weather-data">
+          <div className="temperature">
+            <Skeleton
+              skeletonWidth="150px"
+              skeletonHeight="50px"
+              skeletonMargin="25px"
+            />
+          </div>
+          <div className="weather-description">
+            <Skeleton skeletonWidth="150px" skeletonHeight="1em" />
+          </div>
+        </div>
       )}
     </div>
   );

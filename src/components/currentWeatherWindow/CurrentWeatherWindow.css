@@ -48,15 +48,6 @@
   bottom: 0px;
 }
 
-.skeleton {
-  display: inline-block;
-  position: relative;
-  height: 1em;
-  width: 100px;
-  animation: skeleton-loading 1s linear infinite alternate;
-  top: 5px;
-}
-
 @keyframes skeleton-loading {
   0% {
     background-color: hsl(200, 20%, 80%);
