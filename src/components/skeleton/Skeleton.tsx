@@ -1,22 +1,22 @@
 import "./Skeleton.css";
 
 interface Props {
-  skeletonWidth: number;
-  skeletonHeight: number;
-  skeletonMargin: number | null;
+	skeletonWidth: string;
+	skeletonHeight: string;
+	skeletonMargin?: string;
 }
 
-const Skeleton = ({ skeletonWidth, skeletonHeight, skeletonMargin }) => {
-  return (
-    <div
-      className="skeleton"
-      style={{
-        width: skeletonWidth,
-        height: skeletonHeight,
-        marginRight: skeletonMargin,
-      }}
-    ></div>
-  );
+const Skeleton = ({ skeletonWidth, skeletonHeight, skeletonMargin }: Props) => {
+	return (
+		<div
+			className="skeleton"
+			style={{
+				width: skeletonWidth,
+				height: skeletonHeight,
+				marginRight: skeletonMargin,
+			}}
+		></div>
+	);
 };
 
 export default Skeleton;

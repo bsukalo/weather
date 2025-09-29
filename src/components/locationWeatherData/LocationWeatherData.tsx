@@ -1,62 +1,69 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import apiClient from "../../services/api-client";
 import "./LocationWeatherData.css";
 import Skeleton from "../skeleton/Skeleton.tsx";
 
-interface Weather {
-  current: {
-    temp_c: number;
-    condition: {
-      text: string;
-    };
-  };
+interface Props {
+	city: string | null;
 }
 
-const LocationWeatherData = () => {
-  const [weather, setWeather] = useState<Weather | null>(null);
+interface Weather {
+	current: {
+		temp_c: number;
+		condition: {
+			text: string;
+		};
+	};
+}
 
-  const fetchWeather = () => {
-    apiClient
-      .get<Weather>("current.json", {
-        params: {
-          q: "New_York",
-        },
-      })
-      .then((res) => {
-        setWeather(res.data);
-      })
-      .catch((err) => console.error(err));
-  };
+const LocationWeatherData = ({ city }: Props) => {
+	const [weather, setWeather] = useState<Weather | null>(null);
 
-  useEffect(() => {
-    fetchWeather();
-  }, []);
+	const fetchWeather = useCallback(() => {
+		apiClient
+			.get<Weather>("current.json", {
+				params: {
+					q: city,
+				},
+			})
+			.then((res) => {
+				setWeather(res.data);
+			})
+			.catch((err) => console.error(err));
+	}, [city]);
 
-  return (
-    <div className="weather-data-container">
-      {weather ? (
-        <div className="weather-data">
-          <p className="temperature"> {weather.current.temp_c.toString()}°</p>
-          <p className="weather-description">
-            {weather.current.condition.text.toString()}
-          </p>
-        </div>
-      ) : (
-        <div className="weather-data">
-          <div className="temperature">
-            <Skeleton
-              skeletonWidth="150px"
-              skeletonHeight="50px"
-              skeletonMargin="25px"
-            />
-          </div>
-          <div className="weather-description">
-            <Skeleton skeletonWidth="150px" skeletonHeight="1em" />
-          </div>
-        </div>
-      )}
-    </div>
-  );
+	useEffect(() => {
+		fetchWeather();
+	}, [fetchWeather]);
+
+	return (
+		<div className="weather-data-container">
+			{weather ? (
+				<div className="weather-data">
+					<p className="temperature">
+						{" "}
+						{weather.current.temp_c.toString()}°
+					</p>
+					<p className="weather-description">
+						{weather.current.condition.text.toString()}
+					</p>
+				</div>
+			) : (
+				<div className="weather-data">
+					<div className="temperature">
+						<Skeleton
+							skeletonWidth="150px"
+							skeletonHeight="50px"
+							skeletonMargin="25px"
+						/>
+					</div>
+					<div className="weather-description">
+						<Skeleton skeletonWidth="150px" skeletonHeight="1em" />
+					</div>
+				</div>
+			)}
+		</div>
+	);
 };
 
 export default LocationWeatherData;
