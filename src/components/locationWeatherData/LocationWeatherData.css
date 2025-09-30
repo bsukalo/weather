@@ -26,6 +26,6 @@
 
 .weather-description {
 	text-align: center;
-  font-size: 28px;
-  padding:0px 10px 0px 10px;
+	font-size: 28px;
+	padding: 0px 10px 0px 6px;
 }

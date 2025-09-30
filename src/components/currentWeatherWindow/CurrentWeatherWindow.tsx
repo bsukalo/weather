@@ -46,9 +46,27 @@ const CurrentWeatherWindow = ({ city }: Props) => {
 		<div className="weather-window">
 			<div className="location-info-container">
 				<div className="location-info">
-					<div className="city-name">{time?.location.name},
-						<div className="country-name">{time?.location.country}</div>
-					</div>
+					{time ? (
+						<div className="city-name">
+							{time?.location.name},
+							<div className="country-name">
+								{time?.location.country}
+							</div>
+						</div>
+					) : (
+						<div className="city-name">
+							<Skeleton
+								skeletonWidth="200px"
+								skeletonHeight="1em"
+							/>
+							<div className="country-name">
+								<Skeleton
+									skeletonWidth="150px"
+									skeletonHeight="1em"
+								/>
+							</div>
+						</div>
+					)}
 					{time ? (
 						<div className="location-time">
 							{time.location.localtime.slice(11, 16)}
