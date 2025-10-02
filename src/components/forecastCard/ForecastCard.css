@@ -1,0 +1,69 @@
+.forecast-card-container {
+  width: 100%;
+  height: 100px;
+  background-color: brown;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(7.5px);
+  -webkit-backdrop-filter: blur(7.5px);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  z-index: 5;
+}
+
+.forecast-card {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.forecast-day {
+  font-size: 26px;
+  font-weight: 700;
+  margin-left: 20px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.forecast-description {
+  font-size: 26px;
+  font-weight: 700;
+  margin-left: 20px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.forecast-right {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 200px;
+  align-items: center;
+}
+
+.data-grid {
+  display: grid;
+  width: 100%;
+  padding-right: 60px;
+  text-align: center;
+  align-items: end;
+  font-size: 12px;
+}
+
+.min-temperature {
+  grid-row: 1 / 1;
+}
+
+.avg-temperature {
+  grid-row: 1 / 1;
+}
+
+.max-temperature {
+  grid-row: 1 / 1;
+}
+
+.forecast-temperature {
+  font-size: 28px;
+  margin-left: 10px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}

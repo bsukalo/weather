@@ -1,0 +1,10 @@
+.forecast-window {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  width: calc(100% - 20px);
+  height: 100%;
+  padding: 215px 0px 5px 0px;
+}
