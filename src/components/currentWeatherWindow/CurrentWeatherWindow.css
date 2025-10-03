@@ -62,3 +62,12 @@
     background-color: hsl(200, 20%, 90%);
   }
 }
+
+@media screen and (max-width: 768px){
+  .location-info {
+    font-size: 26px;
+  }
+  .country-name{
+    font-size: 18px;
+  }
+}

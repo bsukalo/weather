@@ -23,6 +23,18 @@ export interface ForecastDay {
   day: Day;
 }
 
+function useViewportHeight() {
+  const [height, setHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    const handleResize = () => setHeight(window.innerHeight);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return height;
+}
+
 const Forecast = ({ city }: Props) => {
   const [forecastData, setForecastData] = useState<ForecastDay[]>([]);
   const fetchWeather = useCallback(() => {
@@ -30,7 +42,7 @@ const Forecast = ({ city }: Props) => {
       .get("forecast.json", {
         params: {
           q: city,
-          days: 1,
+          days: 7,
         },
       })
       .then((res) => {
@@ -43,9 +55,19 @@ const Forecast = ({ city }: Props) => {
     fetchWeather();
   }, [fetchWeather()]);
 
+  const height = useViewportHeight();
+
+  let cardsShown = 7;
+  if (height < 520) cardsShown = 1;
+  else if (height < 650) cardsShown = 2;
+  else if (height < 760) cardsShown = 3;
+  else if (height < 900) cardsShown = 4;
+  else if (height < 1030) cardsShown = 5;
+  else if (height < 1180) cardsShown = 6;
+
   return (
     <div className="forecast-window">
-      {forecastData.map((data) => (
+      {forecastData.slice(0, cardsShown).map((data) => (
         <ForecastCard
           key={data.date}
           forecast_day={data.date}

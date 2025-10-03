@@ -13,7 +13,9 @@
   position: relative;
   flex-direction: column;
   height: 85vh;
-  width: 800px;
+  width: 80vw;
+  max-width: 900px;
+  max-height: 1050px;
   align-items: center;
   justify-content: space-between;
   background: rgba(255, 255, 255, 0.19);
