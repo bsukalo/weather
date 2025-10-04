@@ -43,6 +43,8 @@ const Forecast = ({ city }: Props) => {
         params: {
           q: city,
           days: 7,
+          aqi: "no",
+          alerts: "no",
         },
       })
       .then((res) => {
@@ -53,7 +55,7 @@ const Forecast = ({ city }: Props) => {
 
   useEffect(() => {
     fetchWeather();
-  }, [fetchWeather()]);
+  }, [fetchWeather]);
 
   const height = useViewportHeight();
 
