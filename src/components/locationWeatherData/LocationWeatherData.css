@@ -1,7 +1,9 @@
 .weather-data-container {
   display: flex;
   overflow: auto;
-  width: 250px;
+  width: auto;
+  margin-right: 25px;
+  margin-bottom: 5px;
   flex-direction: row;
   text-align: right;
   justify-content: center;
@@ -19,8 +21,9 @@
 }
 
 .temperature {
-  font-size: 60px;
+  font-size: 50px;
   font-weight: 300;
+  margin-left: 20px;
 }
 
 .weather-description {
@@ -32,8 +35,12 @@
 @media screen and (max-width: 768px) {
   .temperature {
     font-size: 38px;
+    margin-left: 10px;
   }
   .weather-description {
     font-size: 18px;
+  }
+  .weather-icon {
+    height: 70px;
   }
 }

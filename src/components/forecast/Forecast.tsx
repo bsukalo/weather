@@ -9,6 +9,7 @@ interface Props {
 
 interface Condition {
   text: string;
+  icon: string;
 }
 
 interface Day {
@@ -43,9 +44,7 @@ const Forecast = ({ city }: Props) => {
       .get("forecast.json", {
         params: {
           q: city,
-          days: 7,
-          aqi: "no",
-          alerts: "no",
+          days: 3,
         },
       })
       .then((res) => {
@@ -64,10 +63,6 @@ const Forecast = ({ city }: Props) => {
   let cardsShown = 7;
   if (height < 520) cardsShown = 1;
   else if (height < 650) cardsShown = 2;
-  else if (height < 760) cardsShown = 3;
-  else if (height < 900) cardsShown = 4;
-  else if (height < 1030) cardsShown = 5;
-  else if (height < 1180) cardsShown = 6;
 
   let days = [
     "Sunday",
@@ -87,38 +82,39 @@ const Forecast = ({ city }: Props) => {
     case "Mon":
       days.splice(0, 2);
       days.unshift("Today (Monday)");
-      days.push("Monday");
+      days.push("Sunday");
+      console.log(days);
       break;
     case "Tue":
       days.splice(0, 3);
       days.unshift("Today (Tuesday)");
-      days.push("Monday", "Tuesday");
+      days.push("Sunday", "Monday");
       break;
     case "Wed":
       days.splice(0, 4);
       days.unshift("Today (Wednesday)");
-      days.push("Monday", "Tuesday", "Wednesday");
+      days.push("Sunday", "Monday", "Tuesday");
       break;
     case "Thu":
       days.splice(0, 5);
       days.unshift("Today (Thursday)");
-      days.push("Monday", "Tuesday", "Wednesday", "Thursday");
+      days.push("Sunday", "Monday", "Tuesday", "Wednesday");
       break;
     case "Fri":
       days.splice(0, 6);
       days.unshift("Today (Friday)");
-      days.push("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
+      days.push("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday");
       break;
     case "Sat":
       days.splice(0, 7);
       days.unshift("Today (Saturday)");
       days.push(
+        "Sunday",
         "Monday",
         "Tuesday",
         "Wednesday",
         "Thursday",
         "Friday",
-        "Saturday",
       );
       break;
   }
@@ -130,6 +126,7 @@ const Forecast = ({ city }: Props) => {
           key={data.date}
           forecast_day={days[index]}
           weather_description={data.day.condition.text}
+          forecast_icon={data.day.condition.icon}
           min_temperature={data.day.mintemp_c}
           avg_temperature={data.day.avgtemp_c}
           max_temperature={data.day.maxtemp_c}

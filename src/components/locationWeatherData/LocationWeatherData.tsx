@@ -12,6 +12,7 @@ interface Weather {
     temp_c: number;
     condition: {
       text: string;
+      icon: string;
     };
   };
 }
@@ -41,6 +42,10 @@ const LocationWeatherData = ({ city }: Props) => {
       {weather ? (
         <div className="weather-data">
           <p className="temperature"> {weather.current.temp_c.toString()}°</p>
+          <img
+            className="weather-icon"
+            src={weather.current.condition.icon}
+          ></img>
           <p className="weather-description">
             {weather.current.condition.text.toString()}
           </p>

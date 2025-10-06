@@ -9,6 +9,7 @@
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   z-index: 5;
+  margin-bottom: 8px;
 }
 
 .forecast-card {
@@ -23,7 +24,15 @@
   font-size: 26px;
   font-weight: 700;
   margin-left: 20px;
+  margin-top: 10px;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.forecast-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
 
 .forecast-description {
@@ -33,7 +42,11 @@
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
 }
 
-.forecast-right {
+.forecast-icon {
+  height: 40px;
+}
+
+.forecast-right-container {
   display: flex;
   flex-direction: column;
   height: auto;
@@ -41,7 +54,7 @@
   align-items: center;
 }
 
-.data-grid {
+.forecast-right {
   display: grid;
   width: 100%;
   padding-right: 70px;
@@ -71,8 +84,10 @@
 }
 
 @media screen and (max-width: 768px) {
-  .forecast-right {
+  .forecast-right-container {
     max-width: 160px;
+    align-items: end;
+    width: 70px;
   }
   .forecast-temperature {
     font-size: 20px;
@@ -87,10 +102,6 @@
     display: none;
   }
   .forecast-right {
-    align-items: end;
-    width: 70px;
-  }
-  .data-grid {
     text-align: right;
     justify-content: end;
     padding-right: 20px;

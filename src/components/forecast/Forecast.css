@@ -1,7 +1,7 @@
 .forecast-window {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: top;
   align-items: center;
   position: relative;
   width: calc(100% - 20px);
