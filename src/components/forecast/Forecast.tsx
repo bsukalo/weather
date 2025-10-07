@@ -39,6 +39,8 @@ function useViewportHeight() {
 const Forecast = ({ city }: Props) => {
   const [forecastData, setForecastData] = useState<ForecastDay[]>([]);
   const [date, setDate] = useState<Date>(new Date());
+  const [fetchCount, setFetchCount] = useState(0);
+
   const fetchWeather = useCallback(() => {
     apiClient
       .get("forecast.json", {
@@ -50,6 +52,7 @@ const Forecast = ({ city }: Props) => {
       .then((res) => {
         setForecastData(res.data.forecast.forecastday);
         setDate(new Date(res.data.forecast.forecastday[0].date));
+        setFetchCount((prev) => prev + 1);
       })
       .catch((err) => console.error(err));
   }, [city]);
@@ -123,13 +126,14 @@ const Forecast = ({ city }: Props) => {
     <div className="forecast-window">
       {forecastData.slice(0, cardsShown).map((data, index) => (
         <ForecastCard
-          key={data.date}
+          key={`${fetchCount} - ${index}`}
           forecast_day={days[index]}
           weather_description={data.day.condition.text}
           forecast_icon={data.day.condition.icon}
           min_temperature={data.day.mintemp_c}
           avg_temperature={data.day.avgtemp_c}
           max_temperature={data.day.maxtemp_c}
+          delay={index * 0.1}
         />
       ))}
     </div>

@@ -10,6 +10,10 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
   z-index: 5;
   margin-bottom: 8px;
+
+  animation: fadeInBottom;
+  animation-duration: 1s;
+  animation-fill-mode: both;
 }
 
 .forecast-card {
@@ -81,6 +85,19 @@
   font-size: 28px;
   margin-left: 10px;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.fadeInBottom {
+  animation-name: fadeInBottom;
+}
+@keyframes fadeInBottom {
+  from {
+    transform: translateY(40%);
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
 }
 
 @media screen and (max-width: 768px) {

@@ -8,6 +8,7 @@ interface Props {
   min_temperature: number;
   avg_temperature: number;
   max_temperature: number;
+  delay: number;
 }
 
 const ForecastCard = ({
@@ -17,9 +18,13 @@ const ForecastCard = ({
   min_temperature,
   avg_temperature,
   max_temperature,
+  delay,
 }: Props) => {
   return (
-    <div className="forecast-card-container">
+    <div
+      className="forecast-card-container"
+      style={{ animationDelay: `${delay}s` }}
+    >
       <div className="forecast-card">
         <div className="forecast-left-container">
           <div className="forecast-day">{forecast_day}</div>
