@@ -21,6 +21,10 @@
   height: 100%;
   width: 100%;
   justify-content: space-between;
+
+  animation: fadeInBottomContainer;
+  animation-duration: 1s;
+  animation-fill-mode: both;
 }
 
 .location-info {
@@ -52,6 +56,19 @@
   opacity: 50%;
   margin-right: 20px;
   bottom: 0px;
+}
+
+.fadeInBottomContainer {
+  animation-name: fadeInBottomContainer;
+}
+@keyframes fadeInBottomContainer {
+  from {
+    transform: translateY(5%);
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
 }
 
 @keyframes skeleton-loading {

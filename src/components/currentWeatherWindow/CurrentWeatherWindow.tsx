@@ -1,5 +1,5 @@
 import "./CurrentWeatherWindow.css";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import apiClient from "../../services/api-client.ts";
 import LocationWeatherData from "../locationWeatherData/LocationWeatherData.tsx";
 import Skeleton from "../skeleton/Skeleton.tsx";
@@ -18,6 +18,7 @@ interface Time {
 
 const CurrentWeatherWindow = ({ city }: Props) => {
   const [time, setTime] = useState<Time | null>();
+  const ref = useRef<HTMLDivElement>(null);
 
   const fetchTime = useCallback(() => {
     apiClient
@@ -35,6 +36,13 @@ const CurrentWeatherWindow = ({ city }: Props) => {
   useEffect(() => {
     fetchTime();
 
+    // plays fade in animation every time city changes
+    if (ref.current) {
+      ref.current.style.animation = "none";
+      void ref.current.offsetHeight;
+      ref.current.style.animation = "fadeInBottomContainer 1s both";
+    }
+
     const interval = setInterval(() => {
       fetchTime();
     }, 10000);
@@ -44,7 +52,7 @@ const CurrentWeatherWindow = ({ city }: Props) => {
 
   return (
     <div className="weather-window">
-      <div className="location-info-container">
+      <div ref={ref} className="location-info-container">
         <div className="location-info">
           {time ? (
             <div className="city-name">
