@@ -1,53 +1,31 @@
-import { useCallback, useEffect, useState } from "react";
-import apiClient from "../../services/api-client";
 import "./LocationWeatherData.css";
 import Skeleton from "../skeleton/Skeleton.tsx";
 
 interface Props {
   city: string | null;
+  weather: Weather | undefined;
 }
 
 interface Weather {
-  current: {
-    temp_c: number;
-    condition: {
-      text: string;
-      icon: string;
-    };
+  temp_c: number;
+  condition: {
+    text: string;
+    icon: string;
   };
 }
 
-const LocationWeatherData = ({ city }: Props) => {
-  const [weather, setWeather] = useState<Weather | null>(null);
-
-  const fetchWeather = useCallback(() => {
-    apiClient
-      .get<Weather>("current.json", {
-        params: {
-          q: city,
-        },
-      })
-      .then((res) => {
-        setWeather(res.data);
-      })
-      .catch((err) => console.error(err));
-  }, [city]);
-
-  useEffect(() => {
-    fetchWeather();
-  }, [fetchWeather]);
-
+const LocationWeatherData = ({ weather }: Props) => {
   return (
     <div className="weather-data-container">
       {weather ? (
         <div className="weather-data">
-          <p className="temperature"> {weather.current.temp_c.toString()}°</p>
+          <p className="temperature"> {weather.temp_c.toString()}°</p>
           <img
             className="weather-icon"
-            src={weather.current.condition.icon}
+            src={weather.condition.icon}
           ></img>
           <p className="weather-description">
-            {weather.current.condition.text.toString()}
+            {weather.condition.text.toString()}
           </p>
         </div>
       ) : (
