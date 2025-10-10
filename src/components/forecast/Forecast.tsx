@@ -1,7 +1,8 @@
+import { useState, useEffect, useCallback } from "react";
+import "./Forecast.css";
 import apiClient from "../../services/api-client";
 import ForecastCard from "../forecastCard/ForecastCard";
-import "./Forecast.css";
-import { useState, useEffect, useCallback } from "react";
+import ForecastCardSkeleton from "../forecastCardSkeleton/ForecastCardSkeleton";
 
 interface Props {
   city: string;
@@ -40,8 +41,9 @@ const Forecast = ({ city }: Props) => {
   const [forecastData, setForecastData] = useState<ForecastDay[]>([]);
   const [date, setDate] = useState<Date>(new Date());
   const [fetchCount, setFetchCount] = useState(0);
+  const skeletons = [1, 2, 3];
 
-  const fetchWeather = useCallback(() => {
+  const fetchForecast = useCallback(() => {
     apiClient
       .get("forecast.json", {
         params: {
@@ -58,8 +60,8 @@ const Forecast = ({ city }: Props) => {
   }, [city]);
 
   useEffect(() => {
-    fetchWeather();
-  }, [fetchWeather]);
+    fetchForecast();
+  }, [fetchForecast]);
 
   const height = useViewportHeight();
 
@@ -121,21 +123,24 @@ const Forecast = ({ city }: Props) => {
       );
       break;
   }
+  console.log(forecastData.length);
+
 
   return (
     <div className="forecast-window">
-      {forecastData.slice(0, cardsShown).map((data, index) => (
-        <ForecastCard
-          key={`${fetchCount} - ${index}`}
-          forecast_day={days[index]}
-          weather_description={data.day.condition.text}
-          forecast_icon={data.day.condition.icon}
-          min_temperature={data.day.mintemp_c}
-          avg_temperature={data.day.avgtemp_c}
-          max_temperature={data.day.maxtemp_c}
-          delay={index * 0.1}
-        />
-      ))}
+      {forecastData.length > 0 ? (
+        forecastData.slice(0, cardsShown).map((data, index) => (
+          <ForecastCard
+            key={`${fetchCount} - ${index}`}
+            forecast_day={days[index]}
+            weather_description={data.day.condition.text}
+            forecast_icon={data.day.condition.icon}
+            min_temperature={data.day.mintemp_c}
+            avg_temperature={data.day.avgtemp_c}
+            max_temperature={data.day.maxtemp_c}
+            delay={index * 0.1}
+          />))
+      ) : (skeletons.map((index) => (<ForecastCardSkeleton key={index} />)))}
     </div>
   );
 };

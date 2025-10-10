@@ -58,7 +58,7 @@ const MainWindow = () => {
     ref.current.style.animation = "none";
     void ref.current.offsetHeight;
     ref.current.style.animation = "fadeInBottomContainer 1s both";
-  }, [weatherData]);
+  }, [city]);
 
   return (<>
     <div className="upper-layer-container">
@@ -66,7 +66,11 @@ const MainWindow = () => {
       <div className="upper-layer">
         <div className="weather-window">
           <div ref={ref} className="location-info-container">
-            <CurrentWeatherWindow city={city} time={weatherData?.location} weather={weatherData?.current} />
+            <CurrentWeatherWindow
+              city={city}
+              time={weatherData?.location}
+              weather={weatherData?.current}
+            />
           </div>
         </div>
         <Forecast city={city} />
