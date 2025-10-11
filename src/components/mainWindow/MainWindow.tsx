@@ -60,24 +60,25 @@ const MainWindow = () => {
     ref.current.style.animation = "fadeInBottomContainer 1s both";
   }, [city]);
 
-  return (<>
-    <div className="upper-layer-container">
-      <SearchBar onSearch={setCity} />
-      <div className="upper-layer">
-        <div className="weather-window">
-          <div ref={ref} className="location-info-container">
-            <CurrentWeatherWindow
-              city={city}
-              time={weatherData?.location}
-              weather={weatherData?.current}
-            />
+  return (
+    <>
+      <div className="upper-layer-container">
+        <SearchBar onSearch={setCity} />
+        <div className="upper-layer">
+          <div className="weather-window">
+            <div ref={ref} className="location-info-container">
+              <CurrentWeatherWindow
+                city={city}
+                time={weatherData?.location}
+                weather={weatherData?.current}
+              />
+            </div>
           </div>
+          <Forecast city={city} />
         </div>
-        <Forecast city={city} />
       </div>
-    </div>
-    <Background />
-  </>
+      <Background />
+    </>
   );
 };
 
