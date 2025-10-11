@@ -1,6 +1,6 @@
 .weather-data-container {
   display: flex;
-  overflow: auto;
+  overflow: show;
   width: auto;
   margin-right: 25px;
   margin-bottom: 5px;
