@@ -77,7 +77,7 @@ const MainWindow = () => {
           <Forecast city={city} />
         </div>
       </div>
-      <Background />
+      <Background weather={weatherData?.current.condition.text} />
     </>
   );
 };
