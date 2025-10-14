@@ -77,7 +77,7 @@ const MainWindow = () => {
           <Forecast city={city} />
         </div>
       </div>
-      <Background weather={weatherData?.current.condition.text} />
+      <Background weather={weatherData?.current.condition.text} time={weatherData?.location.localtime} />
     </>
   );
 };
