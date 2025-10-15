@@ -88,7 +88,6 @@ const Forecast = ({ city }: Props) => {
       days.splice(0, 2);
       days.unshift("Today (Monday)");
       days.push("Sunday");
-      console.log(days);
       break;
     case "Tue":
       days.splice(0, 3);
@@ -123,8 +122,6 @@ const Forecast = ({ city }: Props) => {
       );
       break;
   }
-  console.log(forecastData.length);
-
 
   return (
     <div className="forecast-window">
