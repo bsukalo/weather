@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Background.css";
+import { conditionList } from "../../data/conditionList.tsx"
 
 interface Props {
   weather: string | undefined;
@@ -15,15 +16,18 @@ function dayOrNight(time: string | undefined) {
   }
 }
 
+function formatBackgroundImage(weather: string | undefined, time: string | undefined) {
+  const key = weather?.toLowerCase().replace(/ /g, "") || "clear";
+  const formattedWeather = conditionList[key];
+  return formattedWeather + (time ? time : "day") + ".png";
+}
+
 const Background = ({ weather, time }: Props) => {
-  const locationTime = time;
-  let condition = (weather?.toLowerCase().replace(/ /g, "") || "clear") + dayOrNight(locationTime) + ".png";
-  const imageURL = new URL(`../../assets/${condition}`, import.meta.url).href;
+  const bgImage = formatBackgroundImage(weather, dayOrNight(time));
+  const imageURL = new URL(`../../assets/${bgImage}`, import.meta.url).href;
   const [isTransitioning, setTransitioning] = useState(false);
   const [currentBg, setCurrentBg] = useState<String | null>(imageURL);
   const [nextBg, setNextBg] = useState<String | null>(imageURL);
-
-  console.log(currentBg);
 
   useEffect(() => {
     setNextBg(imageURL);
