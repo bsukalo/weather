@@ -82,36 +82,36 @@ const Forecast = ({ city }: Props) => {
   switch (date.toString().slice(0, 3)) {
     case "Sun":
       days.splice(0, 1);
-      days.unshift("Today (Sunday)");
+      days.unshift("Today");
       break;
     case "Mon":
       days.splice(0, 2);
-      days.unshift("Today (Monday)");
+      days.unshift("Today");
       days.push("Sunday");
       break;
     case "Tue":
       days.splice(0, 3);
-      days.unshift("Today (Tuesday)");
+      days.unshift("Today");
       days.push("Sunday", "Monday");
       break;
     case "Wed":
       days.splice(0, 4);
-      days.unshift("Today (Wednesday)");
+      days.unshift("Today");
       days.push("Sunday", "Monday", "Tuesday");
       break;
     case "Thu":
       days.splice(0, 5);
-      days.unshift("Today (Thursday)");
+      days.unshift("Today");
       days.push("Sunday", "Monday", "Tuesday", "Wednesday");
       break;
     case "Fri":
       days.splice(0, 6);
-      days.unshift("Today (Friday)");
+      days.unshift("Today");
       days.push("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday");
       break;
     case "Sat":
       days.splice(0, 7);
-      days.unshift("Today (Saturday)");
+      days.unshift("Today");
       days.push(
         "Sunday",
         "Monday",
