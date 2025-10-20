@@ -32,13 +32,20 @@ const LocationWeatherData = ({ weather }: Props) => {
         <div className="weather-data">
           <div className="temperature">
             <Skeleton
-              skeletonWidth="150px"
-              skeletonHeight="50px"
-              skeletonMargin="25px"
+              skeletonWidth="70px"
+              skeletonHeight="40px"
+              skeletonMargin="10px"
+            />
+          </div>
+          <div className="weather-icon">
+            <Skeleton
+              skeletonWidth="70px"
+              skeletonHeight="70px"
+              skeletonMargin="10px"
             />
           </div>
           <div className="weather-description">
-            <Skeleton skeletonWidth="150px" skeletonHeight="1em" />
+            <Skeleton skeletonWidth="150px" skeletonHeight="1.5em" />
           </div>
         </div>
       )}
