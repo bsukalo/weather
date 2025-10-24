@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Background.css";
 import { conditionList } from "../../data/conditionList.tsx"
+import Rainfall from "../rainfall/Rainfall.tsx";
 
 interface Props {
   weather: string | undefined;
@@ -16,18 +17,24 @@ function dayOrNight(time: string | undefined) {
   }
 }
 
-function formatBackgroundImage(weather: string | undefined, time: string | undefined) {
-  const key = weather?.toLowerCase().replace(/ /g, "") || "clear";
-  const formattedWeather = conditionList[key];
+function formatBackground(key: string, time: string | undefined) {
+  const formattedWeather = conditionList[key].icon;
   return formattedWeather + (time ? time : "day") + ".png";
 }
 
 const Background = ({ weather, time }: Props) => {
-  const bgImage = formatBackgroundImage(weather, dayOrNight(time));
+  const key = weather?.toLowerCase().replace(/ /g, "") || "clear";
+  const bgImage = formatBackground(key, dayOrNight(time));
   const imageURL = new URL(`../../assets/${bgImage}`, import.meta.url).href;
   const [isTransitioning, setTransitioning] = useState(false);
   const [currentBg, setCurrentBg] = useState<String | null>(imageURL);
   const [nextBg, setNextBg] = useState<String | null>(imageURL);
+  const [raining, setRaining] = useState(false);
+
+  useEffect(() => {
+    if (conditionList[key].rain > 0) setRaining(true);
+    else setRaining(false);
+  }, [key])
 
   useEffect(() => {
     setNextBg(imageURL);
@@ -38,7 +45,8 @@ const Background = ({ weather, time }: Props) => {
     }, 700)
   }, [imageURL])
 
-  return <>
+  return <div className="background-container">
+    {raining && <Rainfall />}
     <div
       className="dynamic-background"
       style={{ backgroundImage: `url(${currentBg})`, opacity: `${isTransitioning ? '0' : '1'}` }
@@ -51,7 +59,7 @@ const Background = ({ weather, time }: Props) => {
       }
     >
     </div >
-  </>;
+  </div>;
 };
 
 export default Background;
