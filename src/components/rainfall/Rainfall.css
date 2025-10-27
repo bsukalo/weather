@@ -1,0 +1,24 @@
+.rain-container {
+  position: absolute;
+  top: -10%;
+  width: 100vw;
+  height: 110vh;
+  z-index: 3;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.raindrops {
+  position: absolute;
+  border-radius: 50%;
+}
+
+@keyframes fall {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+

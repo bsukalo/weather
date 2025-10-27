@@ -32,7 +32,7 @@ const Background = ({ weather, time }: Props) => {
   const [raining, setRaining] = useState(false);
 
   useEffect(() => {
-    if (conditionList[key].rain > 0) setRaining(true);
+    if (conditionList[key].rainIntensity > 0) setRaining(true);
     else setRaining(false);
   }, [key])
 
@@ -46,7 +46,7 @@ const Background = ({ weather, time }: Props) => {
   }, [imageURL])
 
   return <div className="background-container">
-    {raining && <Rainfall />}
+    {raining && <Rainfall intensity={conditionList[key].rainIntensity} />}
     <div
       className="dynamic-background"
       style={{ backgroundImage: `url(${currentBg})`, opacity: `${isTransitioning ? '0' : '1'}` }
