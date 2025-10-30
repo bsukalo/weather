@@ -7,8 +7,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import apiClient from "../../services/api-client";
 
 interface Props {
-  location: Time,
-  current: Weather,
+  location: Time;
+  current: Weather;
 }
 
 interface Time {
@@ -77,7 +77,10 @@ const MainWindow = () => {
           <Forecast city={city} />
         </div>
       </div>
-      <Background weather={weatherData?.current.condition.text} time={weatherData?.location.localtime} />
+      <Background
+        weather={weatherData?.current.condition.text}
+        time={weatherData?.location.localtime}
+      />
     </>
   );
 };
