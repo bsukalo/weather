@@ -40,8 +40,7 @@ const CurrentWeatherWindow = ({ city, time, weather }: Props) => {
           </div>
         )}
         {time ? (
-          <div className="location-time">
-            {time.localtime.slice(11, 16)}</div>
+          <div className="location-time">{time.localtime.slice(11, 16)}</div>
         ) : (
           <div className="location-time">
             <Skeleton skeletonWidth="100px" skeletonHeight="1em" />
