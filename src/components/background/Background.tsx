@@ -5,16 +5,12 @@ import Rainfall from "../rainfall/Rainfall.tsx";
 
 interface Props {
   weather: string | undefined;
-  time: string | undefined;
+  is_day: number | undefined;
 }
 
-function dayOrNight(time: string | undefined) {
-  if (time === undefined) return "day";
-  else {
-    const formattedTime = parseInt(time?.slice(10, 13));
-    if (formattedTime > 5 && formattedTime < 19) return "day";
-    else return "night";
-  }
+function dayOrNight(isDay: number | undefined) {
+  if (isDay === undefined || isDay === 1) return "day";
+  else return "night";
 }
 
 function formatBackground(key: string, time: string | undefined) {
@@ -22,9 +18,9 @@ function formatBackground(key: string, time: string | undefined) {
   return formattedWeather + (time ? time : "day") + ".png";
 }
 
-const Background = ({ weather, time }: Props) => {
+const Background = ({ weather, is_day }: Props) => {
   const key = weather?.toLowerCase().replace(/ /g, "") || "clear";
-  const bgImage = formatBackground(key, dayOrNight(time));
+  const bgImage = formatBackground(key, dayOrNight(is_day));
   const imageURL = new URL(`../../assets/${bgImage}`, import.meta.url).href;
   const [isTransitioning, setTransitioning] = useState(false);
   const [currentBg, setCurrentBg] = useState<String | null>(imageURL);

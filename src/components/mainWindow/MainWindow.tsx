@@ -19,6 +19,7 @@ interface Time {
 
 interface Weather {
   temp_c: number;
+  is_day: number;
   condition: {
     text: string;
     icon: string;
@@ -79,7 +80,7 @@ const MainWindow = () => {
       </div>
       <Background
         weather={weatherData?.current.condition.text}
-        time={weatherData?.location.localtime}
+        is_day={weatherData?.current.is_day}
       />
     </>
   );
