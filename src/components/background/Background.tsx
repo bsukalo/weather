@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Background.css";
-import { conditionList } from "../../data/conditionList.tsx"
+import { conditionList } from "../../data/conditionList.tsx";
 import Rainfall from "../rainfall/Rainfall.tsx";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 function dayOrNight(time: string | undefined) {
   if (time === undefined) return "day";
   else {
-    const formattedTime = parseInt((time?.slice(10, 13)));
+    const formattedTime = parseInt(time?.slice(10, 13));
     if (formattedTime > 5 && formattedTime < 19) return "day";
     else return "night";
   }
@@ -34,7 +34,7 @@ const Background = ({ weather, time }: Props) => {
   useEffect(() => {
     if (conditionList[key].rainIntensity > 0) setRaining(true);
     else setRaining(false);
-  }, [key])
+  }, [key]);
 
   useEffect(() => {
     setNextBg(imageURL);
@@ -42,24 +42,25 @@ const Background = ({ weather, time }: Props) => {
     setTimeout(() => {
       setCurrentBg(imageURL);
       setTransitioning(false);
-    }, 700)
-  }, [imageURL])
+    }, 700);
+  }, [imageURL]);
 
-  return <div className="background-container">
-    {raining && <Rainfall intensity={conditionList[key].rainIntensity} />}
-    <div
-      className="dynamic-background"
-      style={{ backgroundImage: `url(${currentBg})`, opacity: `${isTransitioning ? '0' : '1'}` }
-      }
-    >
-    </div >
-    <div
-      className="dynamic-background next"
-      style={{ backgroundImage: `url(${nextBg})` }
-      }
-    >
-    </div >
-  </div>;
+  return (
+    <div className="background-container">
+      {raining && <Rainfall intensity={conditionList[key].rainIntensity} />}
+      <div
+        className="dynamic-background"
+        style={{
+          backgroundImage: `url(${currentBg})`,
+          opacity: `${isTransitioning ? "0" : "1"}`,
+        }}
+      ></div>
+      <div
+        className="dynamic-background next"
+        style={{ backgroundImage: `url(${nextBg})` }}
+      ></div>
+    </div>
+  );
 };
 
 export default Background;
