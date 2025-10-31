@@ -63,7 +63,7 @@
 .forecast-right {
   display: grid;
   width: 100%;
-  padding-right: 70px;
+  padding-right: 50px;
   text-align: right;
   justify-content: end;
   font-size: 12px;
@@ -159,4 +159,3 @@
     margin-right: 0px;
   }
 }
-
