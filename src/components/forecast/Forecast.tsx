@@ -66,8 +66,8 @@ const Forecast = ({ city }: Props) => {
   const height = useViewportHeight();
 
   let cardsShown = 7;
-  if (height < 520) cardsShown = 1;
-  else if (height < 650) cardsShown = 2;
+  if (height < 560) cardsShown = 1;
+  else if (height < 670) cardsShown = 2;
 
   let days = [
     "Sunday",
@@ -125,19 +125,22 @@ const Forecast = ({ city }: Props) => {
 
   return (
     <div className="forecast-window">
-      {forecastData.length > 0 ? (
-        forecastData.slice(0, cardsShown).map((data, index) => (
-          <ForecastCard
-            key={`${fetchCount} - ${index}`}
-            forecast_day={days[index]}
-            weather_description={data.day.condition.text}
-            forecast_icon={data.day.condition.icon}
-            min_temperature={data.day.mintemp_c}
-            avg_temperature={data.day.avgtemp_c}
-            max_temperature={data.day.maxtemp_c}
-            delay={index * 0.1}
-          />))
-      ) : (skeletons.map((index) => (<ForecastCardSkeleton key={index} />)))}
+      {forecastData.length > 0
+        ? forecastData
+            .slice(0, cardsShown)
+            .map((data, index) => (
+              <ForecastCard
+                key={`${fetchCount} - ${index}`}
+                forecast_day={days[index]}
+                weather_description={data.day.condition.text}
+                forecast_icon={data.day.condition.icon}
+                min_temperature={data.day.mintemp_c}
+                avg_temperature={data.day.avgtemp_c}
+                max_temperature={data.day.maxtemp_c}
+                delay={index * 0.1}
+              />
+            ))
+        : skeletons.map((index) => <ForecastCardSkeleton key={index} />)}
     </div>
   );
 };
