@@ -14,8 +14,10 @@ function dayOrNight(isDay: number | undefined) {
 }
 
 function formatBackground(key: string, time: string | undefined) {
-  const formattedWeather = conditionList[key].icon;
-  return formattedWeather + (time ? time : "day") + ".png";
+  const formattedWeather =
+    conditionList[key].icon + (time ? time : "day") + ".png";
+  if (formattedWeather === "sunnynight.png") return "clearnight.png";
+  else return formattedWeather;
 }
 
 const Background = ({ weather, is_day }: Props) => {
