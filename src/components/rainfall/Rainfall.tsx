@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-import "./Rainfall.css"
+import "./Rainfall.css";
 
 interface Raindrop {
-  id: number,
-  left: number,
-  delay: number,
-  duration: number,
-  size: number,
+  id: number;
+  left: number;
+  delay: number;
+  duration: number;
+  size: number;
 }
 
 interface Props {
-  intensity: number,
+  intensity: number;
 }
 
 const Rainfall = ({ intensity }: Props) => {
@@ -41,12 +41,13 @@ const Rainfall = ({ intensity }: Props) => {
             width: `${drop.size}px`,
             height: `${drop.size * 15}px`,
             animation: `fall ${drop.duration}s linear ${drop.delay}s infinite`,
-            background: 'linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.8))',
+            background:
+              "linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.8))",
           }}
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default Rainfall
+export default Rainfall;
