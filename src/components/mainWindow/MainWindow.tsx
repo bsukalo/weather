@@ -27,6 +27,8 @@ interface Weather {
 }
 
 const MainWindow = () => {
+  const [theme, setTheme] = useState("dark");
+
   const [city, setCity] = useState("new_york");
   const [weatherData, setWeatherData] = useState<Props>();
   const ref = useRef<HTMLDivElement>(null);
@@ -64,23 +66,26 @@ const MainWindow = () => {
   return (
     <>
       <div className="upper-layer-container">
-        <SearchBar onSearch={setCity} />
-        <div className="upper-layer">
-          <div className="weather-window">
-            <div ref={ref} className="location-info-container">
-              <CurrentWeatherWindow
-                city={city}
-                time={weatherData?.location}
-                weather={weatherData?.current}
-              />
+        <div className={`${theme}-mode`}>
+          <div className="upper-layer">
+            <SearchBar onSearch={setCity} />
+            <div className="weather-window">
+              <div ref={ref} className="location-info-container">
+                <CurrentWeatherWindow
+                  city={city}
+                  time={weatherData?.location}
+                  weather={weatherData?.current}
+                />
+              </div>
             </div>
+            <Forecast city={city} />
           </div>
-          <Forecast city={city} />
         </div>
       </div>
       <Background
         weather={weatherData?.current.condition.text}
         is_day={weatherData?.current.is_day}
+        onThemeChange={setTheme}
       />
     </>
   );

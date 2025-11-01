@@ -6,6 +6,7 @@ import Rainfall from "../rainfall/Rainfall.tsx";
 interface Props {
   weather: string | undefined;
   is_day: number | undefined;
+  onThemeChange: (theme: string) => void;
 }
 
 function dayOrNight(isDay: number | undefined) {
@@ -20,7 +21,7 @@ function formatBackground(key: string, time: string | undefined) {
   else return formattedWeather;
 }
 
-const Background = ({ weather, is_day }: Props) => {
+const Background = ({ weather, is_day, onThemeChange }: Props) => {
   const key = weather?.toLowerCase().replace(/ /g, "") || "clear";
   const bgImage = formatBackground(key, dayOrNight(is_day));
   const imageURL = new URL(`../../assets/${bgImage}`, import.meta.url).href;
@@ -35,12 +36,20 @@ const Background = ({ weather, is_day }: Props) => {
   }, [key]);
 
   useEffect(() => {
+    if (conditionList[key].darkMode === false || is_day === 0)
+      onThemeChange("light");
+    else onThemeChange("dark");
+  }, [key, is_day]);
+
+  useEffect(() => {
     setNextBg(imageURL);
     setTransitioning(true);
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setCurrentBg(imageURL);
       setTransitioning(false);
     }, 700);
+
+    return () => clearTimeout(timeout);
   }, [imageURL]);
 
   return (
