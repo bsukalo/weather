@@ -35,7 +35,7 @@
   flex-direction: row;
   align-items: center;
   gap: 6px;
-  margin-right: 6px;
+  margin-right: 100px;
 }
 
 .forecast-description {
@@ -44,6 +44,7 @@
   margin-left: 20px;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
   line-height: 20px;
+  text-align: justify;
 }
 
 .forecast-icon {
@@ -60,26 +61,29 @@
 }
 
 .forecast-right {
-  display: grid;
+  display: flex;
   width: 100%;
-  padding-right: 50px;
   text-align: right;
   justify-content: end;
   font-size: 12px;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 18px;
+  gap: 28px;
 }
 
-.min-temperature {
-  grid-row: 1 / 1;
+.min-temperature,
+.avg-temperature,
+.max-temperature {
+  position: absolute;
+  top: 25px;
+  right: 25px;
 }
 
 .avg-temperature {
-  grid-row: 1 / 1;
+  right: 125px;
 }
 
-.max-temperature {
-  grid-row: 1 / 1;
+.min-temperature {
+  right: 225px;
 }
 
 .forecast-temperature {
@@ -102,11 +106,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .forecast-right-container {
-    max-width: 160px;
-    align-items: end;
-    width: 70px;
-  }
   .forecast-temperature {
     font-size: 26px;
     margin-left: 2px;
@@ -115,21 +114,19 @@
     font-size: 18px;
     width: 85%;
   }
-  .min-temperature,
-  .max-temperature {
-    display: none;
+  .forecast-description {
+    text-align: left;
   }
-  .forecast-right {
-    text-align: right;
-    justify-content: end;
-    padding-right: 20px;
-  }
-}
-
-@media screen and (max-width: 380px) {
   .forecast-left {
     min-width: 220px;
     max-width: 220px;
     margin-right: 0px;
+  }
+  .min-temperature,
+  .max-temperature {
+    display: none;
+  }
+  .avg-temperature {
+    right: 25px;
   }
 }

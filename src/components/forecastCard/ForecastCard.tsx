@@ -37,17 +37,23 @@ const ForecastCard = ({
             <div className="min-temperature">
               Min
               <br />
-              <div className="forecast-temperature">{min_temperature}°</div>
+              <div className="forecast-temperature">
+                {min_temperature.toFixed(1)}°
+              </div>
             </div>
             <div className="avg-temperature">
               Avg
               <br />
-              <div className="forecast-temperature">{avg_temperature}°</div>
+              <div className="forecast-temperature">
+                {avg_temperature.toFixed(1)}°
+              </div>
             </div>
             <div className="max-temperature">
               Max
               <br />
-              <div className="forecast-temperature">{max_temperature}°</div>
+              <div className="forecast-temperature">
+                {max_temperature.toFixed(1)}°
+              </div>
             </div>
           </div>
         </div>
