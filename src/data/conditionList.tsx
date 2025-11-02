@@ -23,7 +23,12 @@ export const conditionList: Record<
     rainIntensity: 0,
   },
   fog: {
-    darkMode: true,
+    darkMode: false,
+    icon: "foggy",
+    rainIntensity: 0,
+  },
+  freezingfog: {
+    darkMode: false,
     icon: "foggy",
     rainIntensity: 0,
   },
@@ -31,11 +36,6 @@ export const conditionList: Record<
     darkMode: true,
     icon: "partlycloudy",
     rainIntensity: 1,
-  },
-  freezingfog: {
-    darkMode: true,
-    icon: "foggy",
-    rainIntensity: 0,
   },
   heavyfreezingdrizzle: {
     darkMode: false,
@@ -113,6 +113,11 @@ export const conditionList: Record<
     rainIntensity: 0,
   },
   moderateorheavyfreezingrain: {
+    darkMode: false,
+    icon: "overcast",
+    rainIntensity: 3,
+  },
+  moderateorheavyrainwiththunder: {
     darkMode: false,
     icon: "overcast",
     rainIntensity: 3,
