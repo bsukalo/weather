@@ -20,13 +20,12 @@ const LocationWeatherData = ({ weather }: Props) => {
       {weather ? (
         <div className="weather-data">
           <p className="temperature"> {weather.temp_c.toString()}°</p>
-          <img
-            className="weather-icon"
-            src={weather.condition.icon}
-          ></img>
-          <p className="weather-description">
-            {weather.condition.text.toString()}
-          </p>
+          <div>
+            <img className="weather-icon" src={weather.condition.icon}></img>
+            <p className="weather-description">
+              {weather.condition.text.toString()}
+            </p>
+          </div>
         </div>
       ) : (
         <div className="weather-data">
@@ -34,18 +33,20 @@ const LocationWeatherData = ({ weather }: Props) => {
             <Skeleton
               skeletonWidth="70px"
               skeletonHeight="40px"
-              skeletonMargin="10px"
+              skeletonMargin="0px"
             />
           </div>
-          <div className="weather-icon">
-            <Skeleton
-              skeletonWidth="70px"
-              skeletonHeight="70px"
-              skeletonMargin="10px"
-            />
-          </div>
-          <div className="weather-description">
-            <Skeleton skeletonWidth="150px" skeletonHeight="1.5em" />
+          <div>
+            <div className="weather-icon">
+              <Skeleton
+                skeletonWidth="70px"
+                skeletonHeight="70px"
+                skeletonMargin="0px"
+              />
+            </div>
+            <div className="weather-description">
+              <Skeleton skeletonWidth="150px" skeletonHeight="1.2em" />
+            </div>
           </div>
         </div>
       )}
