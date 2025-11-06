@@ -1,4 +1,4 @@
-.rain-container {
+.precipitation-container {
   position: absolute;
   top: -10%;
   width: 100vw;
@@ -8,7 +8,7 @@
   overflow: hidden;
 }
 
-.raindrops {
+.precipitation {
   position: absolute;
   border-radius: 50%;
 }
@@ -16,9 +16,13 @@
 @keyframes fall {
   0% {
     top: 0%;
+    margin-right: 0px;
+  }
+  50% {
+    margin-right: 100%;
   }
   100% {
     top: 100%;
+    margin-right: 0px;
   }
 }
-

@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
 import "./Background.css";
+import { useState, useEffect } from "react";
 import { conditionList } from "../../data/conditionList.tsx";
-import Rainfall from "../rainfall/Rainfall.tsx";
+import Precipitation from "../precipitation/Precipitation.tsx";
 
 interface Props {
   weather: string | undefined;
@@ -29,10 +29,14 @@ const Background = ({ weather, is_day, onThemeChange }: Props) => {
   const [currentBg, setCurrentBg] = useState<String | null>(imageURL);
   const [nextBg, setNextBg] = useState<String | null>(imageURL);
   const [raining, setRaining] = useState(false);
+  const [isSnowing, setSnowing] = useState(false);
 
   useEffect(() => {
     if (conditionList[key].rainIntensity > 0) setRaining(true);
     else setRaining(false);
+
+    if (conditionList[key].snowIntensity > 0) setSnowing(true);
+    else setSnowing(false);
   }, [key]);
 
   useEffect(() => {
@@ -54,7 +58,12 @@ const Background = ({ weather, is_day, onThemeChange }: Props) => {
 
   return (
     <div className="background-container">
-      {raining && <Rainfall intensity={conditionList[key].rainIntensity} />}
+      {raining && (
+        <Precipitation
+          intensity={conditionList[key].rainIntensity}
+          isSnowing={isSnowing}
+        />
+      )}
       <div
         className="dynamic-background"
         style={{
