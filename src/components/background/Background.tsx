@@ -43,7 +43,7 @@ const Background = ({ weather, is_day, onThemeChange }: Props) => {
     if (conditionList[key].darkMode === false || is_day === 0)
       onThemeChange("light");
     else onThemeChange("dark");
-  }, [key, is_day]);
+  }, [key, is_day, imageURL]);
 
   useEffect(() => {
     setNextBg(imageURL);
