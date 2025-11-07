@@ -24,10 +24,10 @@ function formatBackground(key: string, time: string | undefined) {
 const Background = ({ weather, is_day, onThemeChange }: Props) => {
   const key = weather?.toLowerCase().replace(/ /g, "") || "clear";
   const bgImage = formatBackground(key, dayOrNight(is_day));
-  const imageURL = new URL(`../../assets/${bgImage}`, import.meta.url).href;
+  const imageUrl = new URL(`../../assets/${bgImage}`, import.meta.url).href;
   const [isTransitioning, setTransitioning] = useState(false);
-  const [currentBg, setCurrentBg] = useState<String | null>(imageURL);
-  const [nextBg, setNextBg] = useState<String | null>(imageURL);
+  const [currentBg, setCurrentBg] = useState<String | null>(imageUrl);
+  const [nextBg, setNextBg] = useState<String | null>(imageUrl);
   const [raining, setRaining] = useState(false);
   const [isSnowing, setSnowing] = useState(false);
 
@@ -43,18 +43,18 @@ const Background = ({ weather, is_day, onThemeChange }: Props) => {
     if (conditionList[key].darkMode === false || is_day === 0)
       onThemeChange("light");
     else onThemeChange("dark");
-  }, [key, is_day, imageURL]);
+  }, [key, is_day, imageUrl]);
 
   useEffect(() => {
-    setNextBg(imageURL);
+    setNextBg(imageUrl);
     setTransitioning(true);
     const timeout = setTimeout(() => {
-      setCurrentBg(imageURL);
+      setCurrentBg(imageUrl);
       setTransitioning(false);
     }, 700);
 
     return () => clearTimeout(timeout);
-  }, [imageURL]);
+  }, [imageUrl]);
 
   return (
     <div className="background-container">
