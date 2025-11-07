@@ -23,7 +23,7 @@ const Precipitation = ({ intensity, isSnowing }: Props) => {
       particles.push({
         id: i,
         left: Math.random() * 100,
-        delay: Math.random() * 2,
+        delay: isSnowing ? Math.random() * 4 : Math.random() * 2,
         duration: (isSnowing ? 3 : 0.5) + Math.random() * 2,
         size: 2 + Math.random(),
       });

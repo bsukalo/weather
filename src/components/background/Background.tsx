@@ -28,15 +28,28 @@ const Background = ({ weather, is_day, onThemeChange }: Props) => {
   const [isTransitioning, setTransitioning] = useState(false);
   const [currentBg, setCurrentBg] = useState<String | null>(imageUrl);
   const [nextBg, setNextBg] = useState<String | null>(imageUrl);
-  const [raining, setRaining] = useState(false);
-  const [isSnowing, setSnowing] = useState(false);
+  const [precipitation, setPrecipitation] = useState(false);
+  const [snowing, setSnowing] = useState(false);
 
   useEffect(() => {
-    if (conditionList[key].rainIntensity > 0) setRaining(true);
-    else setRaining(false);
+    if (conditionList[key].precipitationIntensity > 0) setPrecipitation(true);
+    else setPrecipitation(false);
 
-    if (conditionList[key].snowIntensity > 0) setSnowing(true);
-    else setSnowing(false);
+    if (conditionList[key].typeOfPrecipitation === "rain") {
+      setSnowing(false);
+      setPrecipitation(false);
+      const timeout = setTimeout(() => {
+        setPrecipitation(true);
+      }, 200);
+      return () => clearTimeout(timeout);
+    } else if (conditionList[key].typeOfPrecipitation === "snow") {
+      setSnowing(true);
+      setPrecipitation(false);
+      const timeout = setTimeout(() => {
+        setPrecipitation(true);
+      }, 200);
+      return () => clearTimeout(timeout);
+    }
   }, [key]);
 
   useEffect(() => {
@@ -58,10 +71,10 @@ const Background = ({ weather, is_day, onThemeChange }: Props) => {
 
   return (
     <div className="background-container">
-      {raining && (
+      {precipitation && (
         <Precipitation
-          intensity={conditionList[key].rainIntensity}
-          isSnowing={isSnowing}
+          intensity={conditionList[key].precipitationIntensity}
+          isSnowing={snowing}
         />
       )}
       <div
