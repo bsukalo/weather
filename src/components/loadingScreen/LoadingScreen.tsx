@@ -1,6 +1,6 @@
 import "./LoadingScreen.css";
 import { useEffect } from "react";
-import { preloadImages, imageUrls } from "../../utils/imagePreloader";
+import { preloadImages, imageUrls } from "../../utils/imagePreloader.ts";
 import { DotLoader } from "react-spinners";
 
 interface Props {
@@ -9,7 +9,17 @@ interface Props {
 
 const LoadingScreen = ({ onFinishLoading }: Props) => {
   useEffect(() => {
-    preloadImages(imageUrls);
+    const loadImages = async () => {
+      try {
+        await preloadImages(imageUrls);
+        onFinishLoading();
+      } catch (error) {
+        console.log(error);
+        onFinishLoading();
+      }
+    };
+
+    loadImages();
   }, [onFinishLoading]);
 
   return (
