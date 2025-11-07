@@ -9,13 +9,7 @@ interface Props {
 
 const LoadingScreen = ({ onFinishLoading }: Props) => {
   useEffect(() => {
-    let cancelled = false;
-
     preloadImages(imageUrls);
-
-    return () => {
-      cancelled = true;
-    };
   }, [onFinishLoading]);
 
   return (
