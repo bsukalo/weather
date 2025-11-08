@@ -18,7 +18,7 @@ const Precipitation = ({ intensity, isSnowing }: Props) => {
   const [precipitation, setPrecipitation] = useState<Precipitation[]>([]);
   useEffect(() => {
     const particles: Precipitation[] = [];
-    const maxParticles = intensity * (isSnowing ? 15 : 25);
+    const maxParticles = intensity * 15;
     for (let i = 0; i < maxParticles; i++) {
       particles.push({
         id: i,
