@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState } from "react";
-import MainWindow from "./components/mainWindow/MainWindow.tsx";
+import MainApp from "./components/mainApp/MainApp.tsx";
 import LoadingScreen from "./components/loadingScreen/LoadingScreen.tsx";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      <MainWindow />
+      <MainApp />
     </>
   );
 }
