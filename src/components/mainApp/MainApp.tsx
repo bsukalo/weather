@@ -1,10 +1,10 @@
 import "./MainApp.css";
 import { useCallback, useEffect, useRef, useState } from "react";
-import apiClient from "../../services/api-client";
+import apiClient from "../../services/api-client.ts";
 import Forecast from "../forecast/Forecast.tsx";
 import SearchBar from "../searchBar/SearchBar.tsx";
 import Background from "../background/Background.tsx";
-import CurrentWeatherWindow from "../currentWeatherWindow/CurrentWeatherWindow";
+import CurrentWeatherWindow from "../currentWeatherWindow/CurrentWeatherWindow.tsx";
 
 interface Props {
   location: Time;

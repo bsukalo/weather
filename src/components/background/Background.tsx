@@ -53,10 +53,37 @@ const Background = ({ weather, is_day, onThemeChange }: Props) => {
   }, [key]);
 
   useEffect(() => {
-    if (conditionList[key].darkMode === false || is_day === 0)
+    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    let metaSafariThemeColor = document.querySelector(
+      'meta[name="apple-mobile-web-app-status-bar-style"]',
+    );
+
+    if (!metaThemeColor) {
+      metaThemeColor = document.createElement("meta");
+      metaThemeColor.setAttribute("name", "theme-color");
+      document.head.appendChild(metaThemeColor);
+    }
+
+    if (!metaSafariThemeColor) {
+      metaSafariThemeColor = document.createElement("meta");
+      metaSafariThemeColor.setAttribute(
+        "name",
+        "apple-mobile-web-app-status-bar-style",
+      );
+      document.head.appendChild(metaSafariThemeColor);
+    }
+
+    metaThemeColor.setAttribute("content", "#4d95d9");
+    metaSafariThemeColor.setAttribute("content", "black-translucent");
+
+    if (conditionList[key].darkMode === false || is_day === 0) {
       onThemeChange("light");
-    else onThemeChange("dark");
-  }, [key, is_day, imageUrl]);
+      metaThemeColor.setAttribute("content", conditionList[key].nighttimeTheme);
+    } else {
+      onThemeChange("dark");
+      metaThemeColor.setAttribute("content", conditionList[key].daytimeTheme);
+    }
+  }, [key, is_day]);
 
   useEffect(() => {
     setNextBg(imageUrl);
