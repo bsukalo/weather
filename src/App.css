@@ -4,6 +4,7 @@
   font-family: "Inter";
 }
 
+html,
 body {
   overflow: hidden;
   position: fixed;
@@ -11,6 +12,9 @@ body {
   height: 100%;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
+
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .dynamic-background {
