@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import "./Precipitation.css";
+import { useState, useEffect } from "react";
 
 interface Precipitation {
   id: number;
