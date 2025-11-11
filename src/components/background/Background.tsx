@@ -73,15 +73,25 @@ const Background = ({ weather, is_day, onThemeChange }: Props) => {
       document.head.appendChild(metaSafariThemeColor);
     }
 
-    metaThemeColor.setAttribute("content", "#4d95d9");
+    const bgColor =
+      conditionList[key].darkMode === false || is_day === 0
+        ? conditionList[key].nighttimeTheme
+        : conditionList[key].daytimeTheme;
+
+    metaThemeColor.setAttribute("content", bgColor);
     metaSafariThemeColor.setAttribute("content", "black-translucent");
+
+    document.body.style.setProperty("background-color", bgColor, "important");
+    document.documentElement.style.setProperty(
+      "background-color",
+      bgColor,
+      "important",
+    );
 
     if (conditionList[key].darkMode === false || is_day === 0) {
       onThemeChange("light");
-      metaThemeColor.setAttribute("content", conditionList[key].nighttimeTheme);
     } else {
       onThemeChange("dark");
-      metaThemeColor.setAttribute("content", conditionList[key].daytimeTheme);
     }
   }, [key, is_day]);
 
