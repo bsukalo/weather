@@ -73,12 +73,9 @@ const Background = ({ weather, is_day, onThemeChange }: Props) => {
       document.head.appendChild(metaSafariThemeColor);
     }
 
-    const bgColor =
-      (conditionList[key].darkMode === false &&
-        (conditionList[key].icon !== "overcast" || "foggy")) ||
-      is_day === 0
-        ? conditionList[key].nighttimeTheme
-        : conditionList[key].daytimeTheme;
+    const bgColor = is_day
+      ? conditionList[key].daytimeTheme
+      : conditionList[key].nighttimeTheme;
 
     metaThemeColor.setAttribute("content", bgColor);
     metaSafariThemeColor.setAttribute("content", "black-translucent");
