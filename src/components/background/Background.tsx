@@ -74,7 +74,9 @@ const Background = ({ weather, is_day, onThemeChange }: Props) => {
     }
 
     const bgColor =
-      conditionList[key].darkMode === false || is_day === 0
+      (conditionList[key].darkMode === false &&
+        (conditionList[key].icon !== "overcast" || "foggy")) ||
+      is_day === 0
         ? conditionList[key].nighttimeTheme
         : conditionList[key].daytimeTheme;
 
