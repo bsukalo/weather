@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 src/assets/uncompressed/
+src/assets/uncompressed_tall/
 
 # Editor directories and files
 .idea
