@@ -1,5 +1,9 @@
 export const imageUrls = Object.values(
-  import.meta.glob("/src/assets/**/*.png", { eager: true, as: "url" }),
+  import.meta.glob("/src/assets/**/*.png", {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }),
 ) as string[];
 
 export const preloadImages = (urls: string[]): Promise<void[]> => {
